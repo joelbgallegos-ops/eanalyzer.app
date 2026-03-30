@@ -1,2 +1,2 @@
-# eanalyzer.app
+# Ranalyzer.app
 RE analyzer
