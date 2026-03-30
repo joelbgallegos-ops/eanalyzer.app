@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">*{box-sizing:border-box;margin:0;padding:0}</p>
+<p class="p1">body{font-family:var(--font-sans);background:#0a0e1a;color:#f0f2f7;min-height:100vh;padding:0 0 3rem}</p>
+<p class="p1">.header{background:linear-gradient(135deg,#1a2340 0%,#0f1628 100%);border-bottom:1px solid rgba(99,160,255,0.2);padding:1.25rem 1.25rem 1rem}</p>
+<p class="p1">.brand-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}</p>
+<p class="p1">.brand-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#4a90e2,#2563eb);display:flex;align-items:center;justify-content:center;flex-shrink:0}</p>
+<p class="p1">.brand-icon svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2}</p>
+<p class="p1">.brand-name{font-size:17px;font-weight:500;color:#fff;line-height:1.2}</p>
+<p class="p1">.brand-tagline{font-size:12px;color:#7a9fd4}</p>
+<p class="p1">.contact-row{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}</p>
+<p class="p1">.contact-pill{display:flex;align-items:center;gap:6px;font-size:12px;color:#7a9fd4;text-decoration:none}</p>
+<p class="p1">.contact-pill svg{width:13px;height:13px;stroke:#4a90e2;fill:none;stroke-width:2;flex-shrink:0}</p>
+<p class="p1">.contact-pill span{color:#a8c4e8}</p>
+<p class="p1">.body{padding:1rem 1.25rem}</p>
+<p class="p1">.section-label{font-size:11px;font-weight:500;color:#4a90e2;text-transform:uppercase;letter-spacing:.08em;margin:1.5rem 0 .65rem;display:flex;align-items:center;gap:8px}</p>
+<p class="p1">.section-label::after{content:'';flex:1;height:1px;background:rgba(74,144,226,.2)}</p>
+<p class="p1">.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1rem}</p>
+<p class="p1">.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}</p>
+<p class="p1">.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}</p>
+<p class="p1">.field-group{display:flex;flex-direction:column;gap:5px}</p>
+<p class="p1">.field-group label{font-size:12px;color:#7a9fd4;font-weight:500}</p>
+<p class="p1">.field-group input,.field-group select{width:100%;padding:10px 12px;font-size:15px;border:1px solid rgba(74,144,226,.25);border-radius:10px;background:rgba(255,255,255,.06);color:#f0f2f7;-webkit-appearance:none}</p>
+<p class="p1">.field-group input:focus,.field-group select:focus{outline:none;border-color:#4a90e2;background:rgba(74,144,226,.08)}</p>
+<p class="p1">.field-group select option{background:#1a2340;color:#f0f2f7}</p>
+<p class="p1">.hint{font-size:11px;color:#506080;margin-top:1px}</p>
+<p class="p1">.down-amt{font-size:11px;color:#4a90e2;margin-top:1px;font-weight:500}</p>
+<p class="p1">.calc-btn{display:block;width:100%;padding:15px;font-size:16px;font-weight:500;border:none;border-radius:14px;background:linear-gradient(135deg,#2563eb,#4a90e2);color:#fff;cursor:pointer;margin-top:1.25rem;letter-spacing:.01em;box-shadow:0 4px 20px rgba(37,99,235,.35)}</p>
+<p class="p1">.calc-btn:active{transform:scale(.98)}</p>
+<p class="p1">.share-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;font-size:15px;font-weight:500;border:1px solid rgba(74,144,226,.4);border-radius:14px;background:rgba(74,144,226,.1);color:#a8c4e8;cursor:pointer;margin-top:10px}</p>
+<p class="p1">.share-btn svg{width:16px;height:16px;stroke:#4a90e2;fill:none;stroke-width:2}</p>
+<p class="p1">.share-btn:active{transform:scale(.98)}</p>
+<p class="p1">.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}</p>
+<p class="p1">.kpi-card{border-radius:14px;padding:14px 14px 12px;border:1px solid rgba(255,255,255,.08)}</p>
+<p class="p1">.kpi-card.accent-blue{background:linear-gradient(135deg,rgba(37,99,235,.25),rgba(37,99,235,.1));border-color:rgba(74,144,226,.35)}</p>
+<p class="p1">.kpi-card.accent-green{background:linear-gradient(135deg,rgba(16,142,89,.25),rgba(16,142,89,.1));border-color:rgba(29,158,117,.35)}</p>
+<p class="p1">.kpi-card.accent-amber{background:linear-gradient(135deg,rgba(186,117,23,.25),rgba(186,117,23,.1));border-color:rgba(239,159,39,.35)}</p>
+<p class="p1">.kpi-card.accent-red{background:linear-gradient(135deg,rgba(163,45,45,.25),rgba(163,45,45,.1));border-color:rgba(226,75,74,.35)}</p>
+<p class="p1">.kpi-card.accent-neutral{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}</p>
+<p class="p1">.kpi-label{font-size:11px;color:#7a9fd4;margin-bottom:4px;font-weight:500}</p>
+<p class="p1">.kpi-value{font-size:22px;font-weight:500;line-height:1}</p>
+<p class="p1">.kpi-sub{font-size:10px;color:#506080;margin-top:5px}</p>
+<p class="p1">.kpi-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;margin-top:5px}</p>
+<p class="p1">.badge-strong{background:rgba(29,158,117,.2);color:#5DCAA5}</p>
+<p class="p1">.badge-avg{background:rgba(186,117,23,.2);color:#EF9F27}</p>
+<p class="p1">.badge-weak{background:rgba(226,75,74,.2);color:#F09595}</p>
+<p class="p1">.good{color:#1D9E75}.warn{color:#EF9F27}.bad{color:#E24B4A}.neutral{color:#f0f2f7}</p>
+<p class="p1">.breakdown-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}</p>
+<p class="p1">.breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}</p>
+<p class="p1">.breakdown-row:last-child{border-bottom:none}</p>
+<p class="p1">.breakdown-row.total-row{background:rgba(74,144,226,.08);padding:13px 14px}</p>
+<p class="p1">.breakdown-row .lbl{color:#7a9fd4}</p>
+<p class="p1">.breakdown-row .val{font-weight:500}</p>
+<p class="p1">.breakdown-row.total-row .lbl{color:#a8c4e8;font-weight:500}</p>
+<p class="p1">.ai-card{background:rgba(37,99,235,.07);border:1px solid rgba(74,144,226,.25);border-radius:16px;padding:1rem}</p>
+<p class="p1">.ai-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}</p>
+<p class="p1">.ai-dot{width:8px;height:8px;border-radius:50%;background:#4a90e2;animation:pulse 2s infinite}</p>
+<p class="p1">@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</p>
+<p class="p1">.ai-label{font-size:12px;font-weight:500;color:#4a90e2}</p>
+<p class="p1">.ai-box{font-size:14px;line-height:1.75;color:#c8d8ef}</p>
+<p class="p1">.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(74,144,226,.3);border-top-color:#4a90e2;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px}</p>
+<p class="p1">@keyframes spin{to{transform:rotate(360deg)}}</p>
+<p class="p1">.footer{text-align:center;margin-top:2rem;font-size:11px;color:#34435a}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Report overlay */</p>
+<p class="p1">.overlay{display:none;background:rgba(0,0,0,.75);padding:1.5rem 1rem;margin-top:1rem;border-radius:16px}</p>
+<p class="p1">.overlay.active{display:block}</p>
+<p class="p1">.report-card{background:#fff;color:#111;border-radius:20px;overflow:hidden;max-width:480px;margin:0 auto}</p>
+<p class="p1">.report-header{background:linear-gradient(135deg,#1a2340,#2563eb);padding:1.5rem;text-align:center}</p>
+<p class="p1">.report-logo{font-size:18px;font-weight:600;color:#fff;margin-bottom:2px}</p>
+<p class="p1">.report-sub{font-size:12px;color:#a8c4e8}</p>
+<p class="p1">.report-contact{display:flex;justify-content:center;gap:20px;margin-top:10px}</p>
+<p class="p1">.report-contact span{font-size:11px;color:#7a9fd4}</p>
+<p class="p1">.report-body{padding:1.25rem}</p>
+<p class="p1">.report-address{font-size:16px;font-weight:500;color:#1a2340;margin-bottom:4px}</p>
+<p class="p1">.report-date{font-size:12px;color:#666;margin-bottom:1rem}</p>
+<p class="p1">.r-section{font-size:10px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:.07em;margin:1rem 0 .5rem;padding-bottom:4px;border-bottom:1px solid #e5eaf5}</p>
+<p class="p1">.r-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.5rem}</p>
+<p class="p1">.r-kpi{background:#f4f7ff;border-radius:10px;padding:10px 12px}</p>
+<p class="p1">.r-kpi-lbl{font-size:10px;color:#5a78aa;margin-bottom:2px}</p>
+<p class="p1">.r-kpi-val{font-size:17px;font-weight:600;color:#1a2340}</p>
+<p class="p1">.r-kpi-badge{font-size:9px;font-weight:600;padding:1px 6px;border-radius:4px;display:inline-block;margin-top:3px}</p>
+<p class="p1">.rb-strong{background:#d1fae5;color:#065f46}</p>
+<p class="p1">.rb-avg{background:#fef3c7;color:#92400e}</p>
+<p class="p1">.rb-weak{background:#fee2e2;color:#7f1d1d}</p>
+<p class="p1">.r-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0}</p>
+<p class="p1">.r-row:last-child{border-bottom:none}</p>
+<p class="p1">.r-row .rl{color:#555}</p>
+<p class="p1">.r-row .rv{font-weight:500;color:#1a2340}</p>
+<p class="p1">.r-row.rt{background:#f4f7ff;margin:0 -1px;padding:8px 10px;border-radius:6px;border:none;margin-top:2px}</p>
+<p class="p1">.r-row.rt .rl{color:#2563eb;font-weight:600}</p>
+<p class="p1">.r-row.rt .rv{color:#2563eb}</p>
+<p class="p1">.r-ai{background:#f4f7ff;border-radius:10px;padding:12px;font-size:12px;line-height:1.7;color:#334}</p>
+<p class="p1">.r-footer{background:#f8faff;border-top:1px solid #e5eaf5;padding:1rem;text-align:center}</p>
+<p class="p1">.r-footer p{font-size:11px;color:#888;margin-bottom:6px}</p>
+<p class="p1">.r-cta{display:flex;justify-content:center;gap:12px}</p>
+<p class="p1">.r-cta a{font-size:12px;font-weight:500;color:#2563eb;text-decoration:none}</p>
+<p class="p1">.r-good{color:#059669}.r-bad{color:#dc2626}.r-warn{color:#d97706}</p>
+<p class="p1">.close-btn{display:block;width:100%;padding:13px;font-size:15px;font-weight:500;border:none;border-radius:12px;background:linear-gradient(135deg,#2563eb,#4a90e2);color:#fff;cursor:pointer;margin-top:1rem;max-width:480px;margin-left:auto;margin-right:auto}</p>
+<p class="p1">.action-row{display:flex;gap:8px;margin-top:.75rem;max-width:480px;margin-left:auto;margin-right:auto}</p>
+<p class="p1">.action-btn{flex:1;padding:11px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="brand-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="brand-icon"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/&gt;&lt;polyline points="9 22 9 12 15 12 15 22"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="brand-name"&gt;Joel Gallegos&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="brand-tagline"&gt;Real Estate Investment Analyzer&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="usageCounter" style="font-size:11px;color:#4a90e2;margin-top:3px;font-weight:500"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="contact-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a class="contact-pill" href="tel:8068911744"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span&gt;806 891 1744&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a class="contact-pill" href="mailto:Joel@spgllc.ltd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/&gt;&lt;polyline points="22,6 12,13 2,6"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span&gt;Joel@spgllc.ltd&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="section-label"&gt;Property &amp;amp; purchase&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid-2"&gt;&lt;div class="field-group"&gt;&lt;label&gt;Purchase price ($)&lt;/label&gt;&lt;input type="number" id="price" value="300000" step="1000" inputmode="numeric"&gt;&lt;/div&gt;&lt;div class="field-group"&gt;&lt;label&gt;Down payment (%)&lt;/label&gt;&lt;input type="number" id="downPct" value="20" step="0.5" min="0" max="100" inputmode="decimal"&gt;&lt;span class="down-amt" id="downAmt"&gt;= $60,000&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="margin-top:10px"&gt;&lt;div class="field-group"&gt;&lt;label&gt;Property address / name (optional)&lt;/label&gt;&lt;input type="text" id="address" placeholder="e.g. 123 Main St, Lubbock TX"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="margin-top:10px"&gt;&lt;div class="field-group"&gt;&lt;label&gt;Gross monthly rent ($)&lt;/label&gt;&lt;input type="number" id="rent" value="2200" step="50" inputmode="numeric"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="section-label"&gt;Loan terms&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Interest rate (%)&lt;/label&gt;&lt;input type="number" id="rate" value="7.25" step="0.05" inputmode="decimal"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Loan term&lt;/label&gt;&lt;select id="term"&gt;&lt;option value="30" selected&gt;30 yr&lt;/option&gt;&lt;option value="20"&gt;20 yr&lt;/option&gt;&lt;option value="15"&gt;15 yr&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Closing costs ($)&lt;/label&gt;&lt;input type="number" id="closing" value="6000" step="500" inputmode="numeric"&gt;&lt;span class="hint"&gt;≈ 2–3% of price&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="section-label"&gt;Operating expenses&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Property tax rate (%/yr)&lt;/label&gt;&lt;input type="number" id="taxRate" value="1.2" step="0.05" inputmode="decimal"&gt;&lt;span class="hint"&gt;US avg ≈ 1.1–1.2%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Annual insurance ($)&lt;/label&gt;&lt;input type="number" id="insurance" value="1800" step="100" inputmode="numeric"&gt;&lt;span class="hint"&gt;US avg ≈ $1,500–$2,000&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Vacancy rate (%)&lt;/label&gt;&lt;input type="number" id="vacancy" value="8" step="0.5" inputmode="decimal"&gt;&lt;span class="hint"&gt;US avg ≈ 7–8%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;OPEX / maintenance (%)&lt;/label&gt;&lt;input type="number" id="opex" value="10" step="0.5" inputmode="decimal"&gt;&lt;span class="hint"&gt;Rule of thumb: 8–12%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;Property mgmt (%)&lt;/label&gt;&lt;input type="number" id="mgmt" value="0" step="0.5" inputmode="decimal"&gt;&lt;span class="hint"&gt;Typical: 8–10%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field-group"&gt;&lt;label&gt;HOA / other ($/mo)&lt;/label&gt;&lt;input type="number" id="hoa" value="0" step="10" inputmode="numeric"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button class="calc-btn" onclick="calculate()"&gt;Analyze Investment&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="results" style="display:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label" style="margin-top:1.75rem"&gt;Key performance indicators&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-grid" id="kpiGrid"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label"&gt;Income &amp;amp; expense breakdown&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-card" id="breakdown"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label"&gt;AI investment insight&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="ai-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ai-header"&gt;&lt;div class="ai-dot"&gt;&lt;/div&gt;&lt;div class="ai-label"&gt;Claude AI · Deal Analysis&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ai-box" id="aiBox"&gt;&lt;span class="spinner"&gt;&lt;/span&gt; Analyzing your deal…&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="share-btn" onclick="showReport()" id="shareBtn" style="margin-top:1.25rem"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/&gt;&lt;polyline points="16 6 12 2 8 6"/&gt;&lt;line x1="12" y1="2" x2="12" y2="15"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Share Client Report</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="footer"&gt;Joel Gallegos Real Estate · 806 891 1744 · Joel@spgllc.ltd&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Report Overlay --&gt;</p>
+<p class="p1">&lt;div class="overlay" id="overlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="report-card" id="reportCard"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="report-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="report-logo"&gt;Joel Gallegos Real Estate&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="report-sub"&gt;Investment Property Analysis Report&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="report-contact"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;📞 806 891 1744&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;✉ Joel@spgllc.ltd&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="report-body" id="reportBody"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Ready to move forward? Contact Joel today.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="r-cta"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="tel:8068911744"&gt;📞 Call 806 891 1744&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="mailto:Joel@spgllc.ltd"&gt;✉ Joel@spgllc.ltd&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="action-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="action-btn" onclick="printReport()"&gt;🖨 Print / Save PDF&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="action-btn" onclick="shareNative()"&gt;📤 Share&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button class="close-btn" onclick="closeReport()"&gt;Close&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const $=id=&gt;document.getElementById(id);</p>
+<p class="p1">let lastCalc={};</p>
+<p class="p1">function fmt(n){return '$'+Math.round(Math.abs(n)).toLocaleString('en-US')}</p>
+<p class="p1">function fmtPct(n){return n.toFixed(2)+'%'}</p>
+<p class="p1">$('price').addEventListener('input',updateDown);</p>
+<p class="p1">$('downPct').addEventListener('input',updateDown);</p>
+<p class="p1">function updateDown(){const d=+$('price').value*+$('downPct').value/100;$('downAmt').textContent='= $'+Math.round(d).toLocaleString('en-US')}</p>
+<p class="p1">function accentClass(v,g,o){return v&gt;=g?'accent-green':v&gt;=o?'accent-amber':'accent-red'}</p>
+<p class="p1">function badgeHtml(v,g,o){const c=v&gt;=g?'badge-strong':v&gt;=o?'badge-avg':'badge-weak',t=v&gt;=g?'Strong':v&gt;=o?'Average':'Weak';return`&lt;div class="kpi-badge ${c}"&gt;${t}&lt;/div&gt;`}</p>
+<p class="p1">function valClass(v,g,o){return v&gt;=g?'good':v&gt;=o?'warn':'bad'}</p>
+<p class="p1">function rBadge(v,g,o){const c=v&gt;=g?'rb-strong':v&gt;=o?'rb-avg':'rb-weak',t=v&gt;=g?'Strong':v&gt;=o?'Average':'Weak';return`&lt;span class="r-kpi-badge ${c}"&gt;${t}&lt;/span&gt;`}</p>
+<p class="p1">function rValClass(v,g,o){return v&gt;=g?'r-good':v&gt;=o?'r-warn':'r-bad'}</p>
+<p class="p2"><br></p>
+<p class="p1">function calculate(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const price=+$('price').value,downPct=+$('downPct').value/100,rent=+$('rent').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const annualRate=+$('rate').value/100,termYears=+$('term').value,closing=+$('closing').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const taxRate=+$('taxRate').value/100,insurance=+$('insurance').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const vacancyRate=+$('vacancy').value/100,opexPct=+$('opex').value/100;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mgmtPct=+$('mgmt').value/100,hoa=+$('hoa').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const downAmt=price*downPct,loanAmt=price-downAmt,totalCash=downAmt+closing;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mo=annualRate/12,n=termYears*12;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mortgage=mo===0?loanAmt/n:loanAmt*mo*Math.pow(1+mo,n)/(Math.pow(1+mo,n)-1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const grossRent=rent*12,vacancyLoss=grossRent*vacancyRate,egi=grossRent-vacancyLoss;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const propTax=price*taxRate,opex=grossRent*opexPct,mgmt=grossRent*mgmtPct,hoaAnnual=hoa*12;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const totalOpex=propTax+insurance+opex+mgmt+hoaAnnual;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const noi=egi-totalOpex,annualDS=mortgage*12,annualCF=noi-annualDS,monthlyCF=annualCF/12;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const coc=totalCash&gt;0?(annualCF/totalCash)*100:0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const capRate=(noi/price)*100,dscr=annualDS&gt;0?noi/annualDS:0,grm=price/grossRent;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>lastCalc={price,downPct,downAmt,rent,annualRate,termYears,closing,taxRate,insurance,vacancyRate,opexPct,mgmtPct,hoa,totalCash,mortgage,grossRent,vacancyLoss,egi,propTax,opex,mgmt,hoaAnnual,noi,annualDS,annualCF,monthlyCF,coc,capRate,dscr,grm,address:$('address').value};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('kpiGrid').innerHTML=`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card ${accentClass(coc,8,4)}"&gt;&lt;div class="kpi-label"&gt;Cash-on-cash return&lt;/div&gt;&lt;div class="kpi-value ${valClass(coc,8,4)}"&gt;${fmtPct(coc)}&lt;/div&gt;&lt;div class="kpi-sub"&gt;Benchmark: 8%+ strong&lt;/div&gt;${badgeHtml(coc,8,4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card ${accentClass(capRate,6,4)}"&gt;&lt;div class="kpi-label"&gt;Cap rate&lt;/div&gt;&lt;div class="kpi-value ${valClass(capRate,6,4)}"&gt;${fmtPct(capRate)}&lt;/div&gt;&lt;div class="kpi-sub"&gt;Benchmark: 6%+ strong&lt;/div&gt;${badgeHtml(capRate,6,4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card ${monthlyCF&gt;=200?'accent-green':monthlyCF&gt;=0?'accent-amber':'accent-red'}"&gt;&lt;div class="kpi-label"&gt;Monthly cash flow&lt;/div&gt;&lt;div class="kpi-value ${monthlyCF&gt;=200?'good':monthlyCF&gt;=0?'warn':'bad'}"&gt;${monthlyCF&lt;0?'−':''}${fmt(monthlyCF)}&lt;/div&gt;&lt;div class="kpi-sub"&gt;After all expenses&lt;/div&gt;${badgeHtml(monthlyCF,200,0)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card ${accentClass(dscr,1.25,1.0)}"&gt;&lt;div class="kpi-label"&gt;DSCR&lt;/div&gt;&lt;div class="kpi-value ${valClass(dscr,1.25,1.0)}"&gt;${dscr.toFixed(2)}x&lt;/div&gt;&lt;div class="kpi-sub"&gt;Lenders require ≥ 1.25x&lt;/div&gt;${badgeHtml(dscr,1.25,1.0)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card accent-neutral"&gt;&lt;div class="kpi-label"&gt;Net operating income&lt;/div&gt;&lt;div class="kpi-value neutral"&gt;${fmt(noi)}/yr&lt;/div&gt;&lt;div class="kpi-sub"&gt;${fmt(noi/12)}/mo before debt&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card accent-neutral"&gt;&lt;div class="kpi-label"&gt;Gross rent multiplier&lt;/div&gt;&lt;div class="kpi-value ${valClass(15-grm,0,-3)}"&gt;${grm.toFixed(1)}x&lt;/div&gt;&lt;div class="kpi-sub"&gt;Lower = better · avg 10–15x&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card accent-neutral"&gt;&lt;div class="kpi-label"&gt;Total cash invested&lt;/div&gt;&lt;div class="kpi-value neutral"&gt;${fmt(totalCash)}&lt;/div&gt;&lt;div class="kpi-sub"&gt;Down + closing costs&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card accent-neutral"&gt;&lt;div class="kpi-label"&gt;Monthly mortgage&lt;/div&gt;&lt;div class="kpi-value neutral"&gt;${fmt(mortgage)}/mo&lt;/div&gt;&lt;div class="kpi-sub"&gt;${termYears}-yr · ${$('rate').value}%&lt;/div&gt;&lt;/div&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('breakdown').innerHTML=`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Gross annual rent&lt;/span&gt;&lt;span class="val good"&gt;${fmt(grossRent)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Vacancy loss (${$('vacancy').value}%)&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(vacancyLoss)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row total-row"&gt;&lt;span class="lbl"&gt;Effective gross income&lt;/span&gt;&lt;span class="val"&gt;${fmt(egi)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Property taxes&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(propTax)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Insurance&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(insurance)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Maintenance / OPEX&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(opex)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${mgmt&gt;0?`&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Property management&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(mgmt)}&lt;/span&gt;&lt;/div&gt;`:''}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${hoaAnnual&gt;0?`&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;HOA / other&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(hoaAnnual)}&lt;/span&gt;&lt;/div&gt;`:''}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row total-row"&gt;&lt;span class="lbl"&gt;Net operating income (NOI)&lt;/span&gt;&lt;span class="val ${noi&gt;=0?'good':'bad'}"&gt;${noi&lt;0?'− ':''}${fmt(noi)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row"&gt;&lt;span class="lbl"&gt;Annual debt service&lt;/span&gt;&lt;span class="val bad"&gt;− ${fmt(annualDS)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="breakdown-row total-row"&gt;&lt;span class="lbl"&gt;Net annual cash flow&lt;/span&gt;&lt;span class="val ${annualCF&gt;=0?'good':'bad'}"&gt;${annualCF&lt;0?'− ':''}${fmt(annualCF)}&lt;/span&gt;&lt;/div&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('results').style.display='block';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('aiBox').innerHTML='&lt;span class="spinner"&gt;&lt;/span&gt; Analyzing your deal…';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>trackUsage();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const prompt=`You are a real estate investment advisor for Joel Gallegos Real Estate. Help a novice investor understand this deal. Be concise, plain-spoken, and honest. Use 3-4 short paragraphs. No bullet points. No markdown.</p>
+<p class="p1">Deal: Purchase $${price.toLocaleString()}, down ${(downPct*100).toFixed(1)}%, rent $${rent}/mo, vacancy ${($('vacancy').value)}%, mortgage $${Math.round(mortgage)}/mo at ${$('rate').value}%/${termYears}yr, NOI $${Math.round(noi)}/yr, cash flow $${Math.round(monthlyCF)}/mo, CoC ${coc.toFixed(2)}%, cap rate ${capRate.toFixed(2)}%, DSCR ${dscr.toFixed(2)}x, total cash $${Math.round(totalCash).toLocaleString()}.</p>
+<p class="p1">Explain what these numbers mean, whether this is a good deal, key risks, and 1-2 things to verify before buying. End with one sentence encouraging them to contact Joel Gallegos at 806-891-1744 or Joel@spgllc.ltd.`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(r=&gt;r.json())</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(data=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const text=data.content?.map(b=&gt;b.text||'').join('')||'Unable to generate insight.';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('aiBox').textContent=text;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lastCalc.aiText=text;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.catch(()=&gt;{$('aiBox').textContent='AI insight unavailable — review the KPIs above.';lastCalc.aiText='';});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showReport(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c=lastCalc;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!c.price)return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const addr=c.address||'Investment Property Analysis';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('reportBody').innerHTML=`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="report-address"&gt;${addr}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="report-date"&gt;Prepared by Joel Gallegos · ${date}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-section"&gt;Key performance indicators&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-kpi-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="r-kpi"&gt;&lt;div class="r-kpi-lbl"&gt;Cash-on-cash return&lt;/div&gt;&lt;div class="r-kpi-val ${rValClass(c.coc,8,4)}"&gt;${fmtPct(c.coc)}&lt;/div&gt;${rBadge(c.coc,8,4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="r-kpi"&gt;&lt;div class="r-kpi-lbl"&gt;Cap rate&lt;/div&gt;&lt;div class="r-kpi-val ${rValClass(c.capRate,6,4)}"&gt;${fmtPct(c.capRate)}&lt;/div&gt;${rBadge(c.capRate,6,4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="r-kpi"&gt;&lt;div class="r-kpi-lbl"&gt;Monthly cash flow&lt;/div&gt;&lt;div class="r-kpi-val ${c.monthlyCF&gt;=200?'r-good':c.monthlyCF&gt;=0?'r-warn':'r-bad'}"&gt;${c.monthlyCF&lt;0?'−':''}${fmt(c.monthlyCF)}&lt;/div&gt;${rBadge(c.monthlyCF,200,0)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="r-kpi"&gt;&lt;div class="r-kpi-lbl"&gt;DSCR&lt;/div&gt;&lt;div class="r-kpi-val ${rValClass(c.dscr,1.25,1.0)}"&gt;${c.dscr.toFixed(2)}x&lt;/div&gt;${rBadge(c.dscr,1.25,1.0)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-section"&gt;Deal summary&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Purchase price&lt;/span&gt;&lt;span class="rv"&gt;${fmt(c.price)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Down payment (${(c.downPct*100).toFixed(1)}%)&lt;/span&gt;&lt;span class="rv"&gt;${fmt(c.downAmt)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Loan amount&lt;/span&gt;&lt;span class="rv"&gt;${fmt(c.price-c.downAmt)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Interest rate / term&lt;/span&gt;&lt;span class="rv"&gt;${($('rate').value)}% / ${c.termYears} yr&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Monthly mortgage&lt;/span&gt;&lt;span class="rv"&gt;${fmt(c.mortgage)}/mo&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row rt"&gt;&lt;span class="rl"&gt;Total cash to close&lt;/span&gt;&lt;span class="rv"&gt;${fmt(c.totalCash)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-section"&gt;Annual income &amp;amp; expenses&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Gross annual rent&lt;/span&gt;&lt;span class="rv r-good"&gt;${fmt(c.grossRent)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Vacancy loss (${$('vacancy').value}%)&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.vacancyLoss)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Property taxes&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.propTax)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Insurance&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.insurance)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Maintenance / OPEX&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.opex)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${c.mgmt&gt;0?`&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Property management&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.mgmt)}&lt;/span&gt;&lt;/div&gt;`:''}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${c.hoaAnnual&gt;0?`&lt;div class="r-row"&gt;&lt;span class="rl"&gt;HOA / other&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.hoaAnnual)}&lt;/span&gt;&lt;/div&gt;`:''}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row rt"&gt;&lt;span class="rl"&gt;Net operating income (NOI)&lt;/span&gt;&lt;span class="rv ${c.noi&gt;=0?'r-good':'r-bad'}"&gt;${fmt(c.noi)}/yr&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row"&gt;&lt;span class="rl"&gt;Annual debt service&lt;/span&gt;&lt;span class="rv r-bad"&gt;− ${fmt(c.annualDS)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="r-row rt"&gt;&lt;span class="rl"&gt;Net annual cash flow&lt;/span&gt;&lt;span class="rv ${c.annualCF&gt;=0?'r-good':'r-bad'}"&gt;${c.annualCF&lt;0?'− ':''}${fmt(c.annualCF)}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${c.aiText?`&lt;div class="r-section"&gt;Investment insight&lt;/div&gt;&lt;div class="r-ai"&gt;${c.aiText}&lt;/div&gt;`:''}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('overlay').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.body.style.overflow='hidden';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function closeReport(){$('overlay').classList.remove('active');}</p>
+<p class="p2"><br></p>
+<p class="p1">function printReport(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c=lastCalc,addr=c.address||'Investment Property Analysis',date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const lines=[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'JOEL GALLEGOS REAL ESTATE',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Investment Property Analysis Report',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'806 891 1744 | Joel@spgllc.ltd',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'─'.repeat(48),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>addr,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Prepared: '+date,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'─'.repeat(48),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'KEY PERFORMANCE INDICATORS',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Cash-on-Cash Return : ${fmtPct(c.coc)}<span class="Apple-converted-space">  </span>(${c.coc&gt;=8?'Strong':c.coc&gt;=4?'Average':'Weak'})`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Cap Rate<span class="Apple-converted-space">            </span>: ${fmtPct(c.capRate)}<span class="Apple-converted-space">  </span>(${c.capRate&gt;=6?'Strong':c.capRate&gt;=4?'Average':'Weak'})`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Monthly Cash Flow <span class="Apple-converted-space">  </span>: ${c.monthlyCF&lt;0?'−':''}${fmt(c.monthlyCF)}<span class="Apple-converted-space">  </span>(${c.monthlyCF&gt;=200?'Strong':c.monthlyCF&gt;=0?'Average':'Weak'})`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`DSCR<span class="Apple-converted-space">                </span>: ${c.dscr.toFixed(2)}x<span class="Apple-converted-space">  </span>(${c.dscr&gt;=1.25?'Strong':c.dscr&gt;=1?'Average':'Weak'})`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`NOI <span class="Apple-converted-space">                </span>: ${fmt(c.noi)}/yr`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Gross Rent Mult.<span class="Apple-converted-space">    </span>: ${c.grm.toFixed(1)}x`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'─'.repeat(48),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'DEAL SUMMARY',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Purchase Price<span class="Apple-converted-space">      </span>: ${fmt(c.price)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Down Payment<span class="Apple-converted-space">        </span>: ${fmt(c.downAmt)} (${(c.downPct*100).toFixed(1)}%)`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Loan Amount <span class="Apple-converted-space">        </span>: ${fmt(c.price-c.downAmt)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Rate / Term <span class="Apple-converted-space">        </span>: ${$('rate').value}% / ${c.termYears} yr`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Monthly Mortgage<span class="Apple-converted-space">    </span>: ${fmt(c.mortgage)}/mo`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Total Cash to Close : ${fmt(c.totalCash)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'─'.repeat(48),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'ANNUAL INCOME &amp; EXPENSES',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Gross Annual Rent <span class="Apple-converted-space">  </span>: ${fmt(c.grossRent)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Vacancy Loss<span class="Apple-converted-space">        </span>: − ${fmt(c.vacancyLoss)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Property Taxes<span class="Apple-converted-space">      </span>: − ${fmt(c.propTax)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Insurance <span class="Apple-converted-space">          </span>: − ${fmt(c.insurance)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Maintenance/OPEX<span class="Apple-converted-space">    </span>: − ${fmt(c.opex)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.mgmt&gt;0?[`Property Mgmt <span class="Apple-converted-space">      </span>: − ${fmt(c.mgmt)}`]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.hoaAnnual&gt;0?[`HOA / Other <span class="Apple-converted-space">        </span>: − ${fmt(c.hoaAnnual)}`]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`NOI <span class="Apple-converted-space">                </span>: ${fmt(c.noi)}/yr`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Annual Debt Service : − ${fmt(c.annualDS)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Net Annual CF <span class="Apple-converted-space">      </span>: ${c.annualCF&lt;0?'− ':''}${fmt(c.annualCF)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'─'.repeat(48),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.aiText?['INVESTMENT INSIGHT','',c.aiText,'─'.repeat(48)]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'This report is for informational purposes only.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Contact Joel: 806-891-1744 | Joel@spgllc.ltd'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const txt=lines.join('\n');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>navigator.clipboard.writeText(txt)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.then(()=&gt;alert('Report copied to clipboard!\n\nPaste it into an email, Notes, or Messages to share with your client.'))</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.catch(()=&gt;alert('Could not copy automatically.\n\nTip: use the Share button below to send directly.'));</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function shareNative(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c=lastCalc;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!c.price)return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const addr=c.address||'Investment Property';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const subject=encodeURIComponent(`Joel Gallegos Real Estate – Investment Analysis: ${addr}`);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const body=encodeURIComponent([</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Hi,`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Please find below the investment analysis for ${addr}, prepared by Joel Gallegos Real Estate.`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`INVESTMENT SUMMARY`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Property:<span class="Apple-converted-space">          </span>${addr}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Purchase Price:<span class="Apple-converted-space">    </span>${fmt(c.price)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Down Payment:<span class="Apple-converted-space">      </span>${fmt(c.downAmt)} (${(c.downPct*100).toFixed(1)}%)`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Loan Amount: <span class="Apple-converted-space">      </span>${fmt(c.price-c.downAmt)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Rate / Term: <span class="Apple-converted-space">      </span>${$('rate').value}% / ${c.termYears} years`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Monthly Mortgage:<span class="Apple-converted-space">  </span>${fmt(c.mortgage)}/mo`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Total Cash to Close: ${fmt(c.totalCash)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`KEY PERFORMANCE INDICATORS`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Cash-on-Cash Return: ${fmtPct(c.coc)}<span class="Apple-converted-space">  </span>(${c.coc&gt;=8?'Strong':c.coc&gt;=4?'Average':'Weak'} — benchmark 8%+)`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Cap Rate:<span class="Apple-converted-space">            </span>${fmtPct(c.capRate)}<span class="Apple-converted-space">  </span>(${c.capRate&gt;=6?'Strong':c.capRate&gt;=4?'Average':'Weak'} — benchmark 6%+)`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Monthly Cash Flow: <span class="Apple-converted-space">  </span>${c.monthlyCF&lt;0?'−':''}${fmt(c.monthlyCF)}/mo`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Net Operating Income:${fmt(c.noi)}/yr`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`DSCR:<span class="Apple-converted-space">                </span>${c.dscr.toFixed(2)}x<span class="Apple-converted-space">  </span>(lenders require ≥ 1.25x)`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Gross Rent Multiplier: ${c.grm.toFixed(1)}x`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`ANNUAL INCOME &amp; EXPENSES`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Gross Annual Rent: <span class="Apple-converted-space">  </span>${fmt(c.grossRent)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Vacancy Loss:<span class="Apple-converted-space">        </span>− ${fmt(c.vacancyLoss)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Property Taxes:<span class="Apple-converted-space">      </span>− ${fmt(c.propTax)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Insurance: <span class="Apple-converted-space">          </span>− ${fmt(c.insurance)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Maintenance/OPEX:<span class="Apple-converted-space">    </span>− ${fmt(c.opex)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.mgmt&gt;0?[`Property Mgmt: <span class="Apple-converted-space">      </span>− ${fmt(c.mgmt)}`]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.hoaAnnual&gt;0?[`HOA / Other: <span class="Apple-converted-space">        </span>− ${fmt(c.hoaAnnual)}`]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`NOI: <span class="Apple-converted-space">                </span>${fmt(c.noi)}/yr`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Annual Debt Service: − ${fmt(c.annualDS)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Net Annual Cash Flow:${c.annualCF&lt;0?'− ':''}${fmt(c.annualCF)}`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>...(c.aiText?[</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`AI INVESTMENT INSIGHT`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>c.aiText,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>``</p>
+<p class="p1"><span class="Apple-converted-space">    </span>]:[]),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`This report was prepared by Joel Gallegos Real Estate.`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Questions? Call or text: 806-891-1744`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`Email: Joel@spgllc.ltd`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`This report is for informational purposes only and does not constitute financial or legal advice.`</p>
+<p class="p1"><span class="Apple-converted-space">  </span>].join('\n'));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mailtoLink=`mailto:?subject=${subject}&amp;body=${body}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(navigator.share){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const plainText=[</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`Joel Gallegos Real Estate – ${addr}`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`Cash-on-Cash: ${fmtPct(c.coc)} | Cap Rate: ${fmtPct(c.capRate)}`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`Monthly CF: ${fmt(c.monthlyCF)}/mo | NOI: ${fmt(c.noi)}/yr`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`DSCR: ${c.dscr.toFixed(2)}x | Total Cash: ${fmt(c.totalCash)}`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>``,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`Joel Gallegos · 806-891-1744 · Joel@spgllc.ltd`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>].join('\n');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>navigator.share({title:`Investment Report – ${addr}`,text:plainText}).catch(()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.location.href=mailtoLink;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.location.href=mailtoLink;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p1">const SB_URL='https://oysncxdguubtckzuszgx.supabase.co';</p>
+<p class="p1">const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95c25jeGRndXVidGNrenVzemd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NTcwMjcsImV4cCI6MjA5MDAzMzAyN30.w8EGOQkLH54dgdrhB05SDfax3CTUShJ8VwlnBeexg4U';</p>
+<p class="p2"><br></p>
+<p class="p1">async function trackUsage(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c=lastCalc;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const payload={</p>
+<p class="p1"><span class="Apple-converted-space">    </span>address:c.address||null,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price:c.price,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>cash_on_cash:+c.coc.toFixed(2),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>cap_rate:+c.capRate.toFixed(2),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>monthly_cf:Math.round(c.monthlyCF),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>noi:Math.round(c.noi),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>dscr:+c.dscr.toFixed(2)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res=await fetch(`${SB_URL}/rest/v1/analyses`,{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method:'POST',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body:JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(res.ok){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>await loadCounter();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const err=await res.text();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert('Supabase insert error ('+res.status+'):\n'+err+'\n\nCheck that the analyses table exists and RLS policies are set.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>alert('Network error reaching Supabase:\n'+e.message);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">async function loadCounter(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const r=await fetch(`${SB_URL}/rest/v1/analyses?select=id`,{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const data=await r.json();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(Array.isArray(data)){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const n=data.length;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const el=$('usageCounter');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(el)el.textContent='📊 '+n+' '+(n===1?'analysis':'analyses')+' run';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}catch(e){console.log('Supabase counter error',e);}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">loadCounter();</p>
+<p class="p1">&lt;/script&gt;</p>
+</body>
+</html>
