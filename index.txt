@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joel Gallegos – Real Estate Investment Analyzer</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e1a;color:#f0f2f7;min-height:100vh;padding:0 0 3rem}
+.header{background:linear-gradient(135deg,#1a2340 0%,#0f1628 100%);border-bottom:1px solid rgba(99,160,255,0.2);padding:1.25rem 1.25rem 1rem}
+.brand-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.brand-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#4a90e2,#2563eb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-icon svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2}
+.brand-name{font-size:17px;font-weight:500;color:#fff;line-height:1.2}
+.brand-tagline{font-size:12px;color:#7a9fd4}
+.contact-row{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.contact-pill{display:flex;align-items:center;gap:6px;font-size:12px;color:#7a9fd4;text-decoration:none}
+.contact-pill svg{width:13px;height:13px;stroke:#4a90e2;fill:none;stroke-width:2;flex-shrink:0}
+.contact-pill span{color:#a8c4e8}
+.body{padding:1rem 1.25rem}
+.section-label{font-size:11px;font-weight:500;color:#4a90e2;text-transform:uppercase;letter-spacing:.08em;margin:1.5rem 0 .65rem;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(74,144,226,.2)}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field-group{display:flex;flex-direction:column;gap:5px}
+.field-group label{font-size:12px;color:#7a9fd4;font-weight:500}
+.field-group input,.field-group select{width:100%;padding:10px 12px;font-size:15px;border:1px solid rgba(74,144,226,.25);border-radius:10px;background:rgba(255,255,255,.06);color:#f0f2f7;-webkit-appearance:none}
+.field-group input:focus,.field-group select:focus{outline:none;border-color:#4a90e2;background:rgba(74,144,226,.08)}
+.field-group select option{background:#1a2340;color:#f0f2f7}
+.hint{font-size:11px;color:#506080;margin-top:1px}
+.down-amt{font-size:11px;color:#4a90e2;margin-top:1px;font-weight:500}
+.calc-btn{display:block;width:100%;padding:15px;font-size:16px;font-weight:500;border:none;border-radius:14px;background:linear-gradient(135deg,#2563eb,#4a90e2);color:#fff;cursor:pointer;margin-top:1.25rem;letter-spacing:.01em;box-shadow:0 4px 20px rgba(37,99,235,.35)}
+.calc-btn:active{transform:scale(.98)}
+.share-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;font-size:15px;font-weight:500;border:1px solid rgba(74,144,226,.4);border-radius:14px;background:rgba(74,144,226,.1);color:#a8c4e8;cursor:pointer;margin-top:10px}
+.share-btn svg{width:16px;height:16px;stroke:#4a90e2;fill:none;stroke-width:2}
+.share-btn:active{transform:scale(.98)}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi-card{border-radius:14px;padding:14px 14px 12px;border:1px solid rgba(255,255,255,.08)}
+.kpi-card.accent-blue{background:linear-gradient(135deg,rgba(37,99,235,.25),rgba(37,99,235,.1));border-color:rgba(74,144,226,.35)}
+.kpi-card.accent-green{background:linear-gradient(135deg,rgba(16,142,89,.25),rgba(16,142,89,.1));border-color:rgba(29,158,117,.35)}
+.kpi-card.accent-amber{background:linear-gradient(135deg,rgba(186,117,23,.25),rgba(186,117,23,.1));border-color:rgba(239,159,39,.35)}
+.kpi-card.accent-red{background:linear-gradient(135deg,rgba(163,45,45,.25),rgba(163,45,45,.1));border-color:rgba(226,75,74,.35)}
+.kpi-card.accent-neutral{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+.kpi-label{font-size:11px;color:#7a9fd4;margin-bottom:4px;font-weight:500}
+.kpi-value{font-size:22px;font-weight:500;line-height:1}
+.kpi-sub{font-size:10px;color:#506080;margin-top:5px}
+.kpi-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;margin-top:5px}
+.badge-strong{background:rgba(29,158,117,.2);color:#5DCAA5}
+.badge-avg{background:rgba(186,117,23,.2);color:#EF9F27}
+.badge-weak{background:rgba(226,75,74,.2);color:#F09595}
+.good{color:#1D9E75}.warn{color:#EF9F27}.bad{color:#E24B4A}.neutral{color:#f0f2f7}
+.breakdown-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}
+.breakdown-row:last-child{border-bottom:none}
+.breakdown-row.total-row{background:rgba(74,144,226,.08);padding:13px 14px}
+.breakdown-row .lbl{color:#7a9fd4}
+.breakdown-row .val{font-weight:500}
+.breakdown-row.total-row .lbl{color:#a8c4e8;font-weight:500}
+.ai-card{background:rgba(37,99,235,.07);border:1px solid rgba(74,144,226,.25);border-radius:16px;padding:1rem}
+.ai-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:#4a90e2;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.ai-label{font-size:12px;font-weight:500;color:#4a90e2}
+.ai-box{font-size:14px;line-height:1.75;color:#c8d8ef}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(74,144,226,.3);border-top-color:#4a90e2;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.footer{text-align:center;margin-top:2rem;font-size:11px;color:#34435a}
+.overlay{display:none;background:rgba(0,0,0,.75);padding:1.5rem 1rem;margin-top:1rem;border-radius:16px}
+.overlay.active{display:block}
+.report-card{background:#fff;color:#111;border-radius:20px;overflow:hidden;max-width:480px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#1a2340,#2563eb);padding:1.5rem;text-align:center}
+.report-logo{font-size:18px;font-weight:600;color:#fff;margin-bottom:2px}
+.report-sub{font-size:12px;color:#a8c4e8}
+.report-contact{display:flex;justify-content:center;gap:20px;margin-top:10px}
+.report-contact span{font-size:11px;color:#7a9fd4}
+.report-body{padding:1.25rem}
+.report-address{font-size:16px;font-weight:500;color:#1a2340;margin-bottom:4px}
+.report-date{font-size:12px;color:#666;margin-bottom:1rem}
+.r-section{font-size:10px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:.07em;margin:1rem 0 .5rem;padding-bottom:4px;border-bottom:1px solid #e5eaf5}
+.r-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.5rem}
+.r-kpi{background:#f4f7ff;border-radius:10px;padding:10px 12px}
+.r-kpi-lbl{font-size:10px;color:#5a78aa;margin-bottom:2px}
+.r-kpi-val{font-size:17px;font-weight:600;color:#1a2340}
+.r-kpi-badge{font-size:9px;font-weight:600;padding:1px 6px;border-radius:4px;display:inline-block;margin-top:3px}
+.rb-strong{background:#d1fae5;color:#065f46}
+.rb-avg{background:#fef3c7;color:#92400e}
+.rb-weak{background:#fee2e2;color:#7f1d1d}
+.r-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.r-row:last-child{border-bottom:none}
+.r-row .rl{color:#555}
+.r-row .rv{font-weight:500;color:#1a2340}
+.r-row.rt{background:#f4f7ff;margin:0 -1px;padding:8px 10px;border-radius:6px;border:none;margin-top:2px}
+.r-row.rt .rl{color:#2563eb;font-weight:600}
+.r-row.rt .rv{color:#2563eb}
+.r-ai{background:#f4f7ff;border-radius:10px;padding:12px;font-size:12px;line-height:1.7;color:#334}
+.r-footer{background:#f8faff;border-top:1px solid #e5eaf5;padding:1rem;text-align:center}
+.r-footer p{font-size:11px;color:#888;margin-bottom:6px}
+.r-cta{display:flex;justify-content:center;gap:12px}
+.r-cta a{font-size:12px;font-weight:500;color:#2563eb;text-decoration:none}
+.r-good{color:#059669}.r-bad{color:#dc2626}.r-warn{color:#d97706}
+.close-btn{display:block;width:100%;padding:13px;font-size:15px;font-weight:500;border:none;border-radius:12px;background:linear-gradient(135deg,#2563eb,#4a90e2);color:#fff;cursor:pointer;margin-top:1rem;max-width:480px;margin-left:auto;margin-right:auto}
+.action-row{display:flex;gap:8px;margin-top:.75rem;max-width:480px;margin-left:auto;margin-right:auto}
+.action-btn{flex:1;padding:11px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
+@media(max-width:500px){
+  .grid-3{grid-template-columns:1fr 1fr;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand-row">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">Joel Gallegos</div>
+      <div class="brand-tagline">Real Estate Investment Analyzer</div>
+      <div id="usageCounter" style="font-size:11px;color:#4a90e2;margin-top:3px;font-weight:500"></div>
+    </div>
+  </div>
+  <div class="contact-row">
+    <a class="contact-pill" href="tel:8068911744">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      <span>806 891 1744</span>
+    </a>
+    <a class="contact-pill" href="mailto:Joel@spgllc.ltd">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Joel@spgllc.ltd</span>
+    </a>
+  </div>
+</div>
+
+<div class="body">
+  <div class="section-label">Property &amp; purchase</div>
+  <div class="card">
+    <div class="grid-2">
+      <div class="field-group"><label>Purchase price ($)</label><input type="number" id="price" value="300000" step="1000" inputmode="numeric"></div>
+      <div class="field-group"><label>Down payment (%)</label><input type="number" id="downPct" value="20" step="0.5" min="0" max="100" inputmode="decimal"><span class="down-amt" id="downAmt">= $60,000</span></div>
+    </div>
+    <div style="margin-top:10px"><div class="field-group"><label>Property address / name (optional)</label><input type="text" id="address" placeholder="e.g. 123 Main St, Lubbock TX"></div></div>
+    <div style="margin-top:10px"><div class="field-group"><label>Gross monthly rent ($)</label><input type="number" id="rent" value="2200" step="50" inputmode="numeric"></div></div>
+  </div>
+
+  <div class="section-label">Loan terms</div>
+  <div class="card">
+    <div class="grid-3">
+      <div class="field-group"><label>Interest rate (%)</label><input type="number" id="rate" value="7.25" step="0.05" inputmode="decimal"></div>
+      <div class="field-group"><label>Loan term</label><select id="term"><option value="30" selected>30 yr</option><option value="20">20 yr</option><option value="15">15 yr</option></select></div>
+      <div class="field-group"><label>Closing costs ($)</label><input type="number" id="closing" value="6000" step="500" inputmode="numeric"><span class="hint">≈ 2–3% of price</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Operating expenses</div>
+  <div class="card">
+    <div class="grid-2">
+      <div class="field-group"><label>Property tax rate (%/yr)</label><input type="number" id="taxRate" value="1.2" step="0.05" inputmode="decimal"><span class="hint">US avg ≈ 1.1–1.2%</span></div>
+      <div class="field-group"><label>Annual insurance ($)</label><input type="number" id="insurance" value="1800" step="100" inputmode="numeric"><span class="hint">US avg ≈ $1,500–$2,000</span></div>
+      <div class="field-group"><label>Vacancy rate (%)</label><input type="number" id="vacancy" value="8" step="0.5" inputmode="decimal"><span class="hint">US avg ≈ 7–8%</span></div>
+      <div class="field-group"><label>OPEX / maintenance (%)</label><input type="number" id="opex" value="10" step="0.5" inputmode="decimal"><span class="hint">Rule of thumb: 8–12%</span></div>
+      <div class="field-group"><label>Property mgmt (%)</label><input type="number" id="mgmt" value="0" step="0.5" inputmode="decimal"><span class="hint">Typical: 8–10%</span></div>
+      <div class="field-group"><label>HOA / other ($/mo)</label><input type="number" id="hoa" value="0" step="10" inputmode="numeric"></div>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="calculate()">Analyze Investment</button>
+
+  <div id="results" style="display:none">
+    <div class="section-label" style="margin-top:1.75rem">Key performance indicators</div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+    <div class="section-label">Income &amp; expense breakdown</div>
+    <div class="breakdown-card" id="breakdown"></div>
+    <div class="section-label">AI investment insight</div>
+    <div class="ai-card">
+      <div class="ai-header"><div class="ai-dot"></div><div class="ai-label">Claude AI · Deal Analysis</div></div>
+      <div class="ai-box" id="aiBox"><span class="spinner"></span> Analyzing your deal…</div>
+    </div>
+    <button class="share-btn" onclick="showReport()" id="shareBtn" style="margin-top:1.25rem">
+      <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Share Client Report
+    </button>
+  </div>
+
+  <div class="footer">Joel Gallegos Real Estate · 806 891 1744 · Joel@spgllc.ltd</div>
+</div>
+
+<!-- Report Overlay -->
+<div class="overlay" id="overlay">
+  <div class="report-card" id="reportCard">
+    <div class="report-header">
+      <div class="report-logo">Joel Gallegos Real Estate</div>
+      <div class="report-sub">Investment Property Analysis Report</div>
+      <div class="report-contact">
+        <span>📞 806 891 1744</span>
+        <span>✉ Joel@spgllc.ltd</span>
+      </div>
+    </div>
+    <div class="report-body" id="reportBody"></div>
+    <div class="r-footer">
+      <p>Ready to move forward? Contact Joel today.</p>
+      <div class="r-cta">
+        <a href="tel:8068911744">📞 Call 806 891 1744</a>
+        <a href="mailto:Joel@spgllc.ltd">✉ Joel@spgllc.ltd</a>
+      </div>
+    </div>
+  </div>
+  <div class="action-row">
+    <button class="action-btn" onclick="printReport()">🖨 Print / Save PDF</button>
+    <button class="action-btn" onclick="shareNative()">📤 Share</button>
+  </div>
+  <button class="close-btn" onclick="closeReport()">Close</button>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let lastCalc={};
+
+function fmt(n){return '$'+Math.round(Math.abs(n)).toLocaleString('en-US')}
+function fmtPct(n){return n.toFixed(2)+'%'}
+
+$('price').addEventListener('input',updateDown);
+$('downPct').addEventListener('input',updateDown);
+
+function updateDown(){
+  const d=+$('price').value*+$('downPct').value/100;
+  $('downAmt').textContent='= $'+Math.round(d).toLocaleString('en-US');
+}
+
+function accentClass(v,g,o){return v>=g?'accent-green':v>=o?'accent-amber':'accent-red'}
+function badgeHtml(v,g,o){const c=v>=g?'badge-strong':v>=o?'badge-avg':'badge-weak',t=v>=g?'Strong':v>=o?'Average':'Weak';return'<div class="kpi-badge '+c+'">'+t+'</div>'}
+function valClass(v,g,o){return v>=g?'good':v>=o?'warn':'bad'}
+function rBadge(v,g,o){const c=v>=g?'rb-strong':v>=o?'rb-avg':'rb-weak',t=v>=g?'Strong':v>=o?'Average':'Weak';return'<span class="r-kpi-badge '+c+'">'+t+'</span>'}
+function rValClass(v,g,o){return v>=g?'r-good':v>=o?'r-warn':'r-bad'}
+
+function calculate(){
+  const price=+$('price').value,downPct=+$('downPct').value/100,rent=+$('rent').value;
+  const annualRate=+$('rate').value/100,termYears=+$('term').value,closing=+$('closing').value;
+  const taxRate=+$('taxRate').value/100,insurance=+$('insurance').value;
+  const vacancyRate=+$('vacancy').value/100,opexPct=+$('opex').value/100;
+  const mgmtPct=+$('mgmt').value/100,hoa=+$('hoa').value;
+
+  const downAmt=price*downPct,loanAmt=price-downAmt,totalCash=downAmt+closing;
+  const mo=annualRate/12,n=termYears*12;
+  const mortgage=mo===0?loanAmt/n:loanAmt*mo*Math.pow(1+mo,n)/(Math.pow(1+mo,n)-1);
+  const grossRent=rent*12,vacancyLoss=grossRent*vacancyRate,egi=grossRent-vacancyLoss;
+  const propTax=price*taxRate,opex=grossRent*opexPct,mgmt=grossRent*mgmtPct,hoaAnnual=hoa*12;
+  const totalOpex=propTax+insurance+opex+mgmt+hoaAnnual;
+  const noi=egi-totalOpex,annualDS=mortgage*12,annualCF=noi-annualDS,monthlyCF=annualCF/12;
+  const coc=totalCash>0?(annualCF/totalCash)*100:0;
+  const capRate=(noi/price)*100,dscr=annualDS>0?noi/annualDS:0,grm=price/grossRent;
+
+  lastCalc={price,downPct,downAmt,rent,annualRate,termYears,closing,taxRate,insurance,vacancyRate,opexPct,mgmtPct,hoa,totalCash,mortgage,grossRent,vacancyLoss,egi,propTax,opex,mgmt,hoaAnnual,noi,annualDS,annualCF,monthlyCF,coc,capRate,dscr,grm,address:$('address').value};
+
+  $('kpiGrid').innerHTML=
+    '<div class="kpi-card '+accentClass(coc,8,4)+'"><div class="kpi-label">Cash-on-cash return</div><div class="kpi-value '+valClass(coc,8,4)+'">'+fmtPct(coc)+'</div><div class="kpi-sub">Benchmark: 8%+ strong</div>'+badgeHtml(coc,8,4)+'</div>'+
+    '<div class="kpi-card '+accentClass(capRate,6,4)+'"><div class="kpi-label">Cap rate</div><div class="kpi-value '+valClass(capRate,6,4)+'">'+fmtPct(capRate)+'</div><div class="kpi-sub">Benchmark: 6%+ strong</div>'+badgeHtml(capRate,6,4)+'</div>'+
+    '<div class="kpi-card '+(monthlyCF>=200?'accent-green':monthlyCF>=0?'accent-amber':'accent-red')+'"><div class="kpi-label">Monthly cash flow</div><div class="kpi-value '+(monthlyCF>=200?'good':monthlyCF>=0?'warn':'bad')+'">'+(monthlyCF<0?'−':'')+fmt(monthlyCF)+'</div><div class="kpi-sub">After all expenses</div>'+badgeHtml(monthlyCF,200,0)+'</div>'+
+    '<div class="kpi-card '+accentClass(dscr,1.25,1.0)+'"><div class="kpi-label">DSCR</div><div class="kpi-value '+valClass(dscr,1.25,1.0)+'">'+dscr.toFixed(2)+'x</div><div class="kpi-sub">Lenders require ≥ 1.25x</div>'+badgeHtml(dscr,1.25,1.0)+'</div>'+
+    '<div class="kpi-card accent-neutral"><div class="kpi-label">Net operating income</div><div class="kpi-value neutral">'+fmt(noi)+'/yr</div><div class="kpi-sub">'+fmt(noi/12)+'/mo before debt</div></div>'+
+    '<div class="kpi-card accent-neutral"><div class="kpi-label">Gross rent multiplier</div><div class="kpi-value '+valClass(15-grm,0,-3)+'">'+grm.toFixed(1)+'x</div><div class="kpi-sub">Lower = better · avg 10–15x</div></div>'+
+    '<div class="kpi-card accent-neutral"><div class="kpi-label">Total cash invested</div><div class="kpi-value neutral">'+fmt(totalCash)+'</div><div class="kpi-sub">Down + closing costs</div></div>'+
+    '<div class="kpi-card accent-neutral"><div class="kpi-label">Monthly mortgage</div><div class="kpi-value neutral">'+fmt(mortgage)+'/mo</div><div class="kpi-sub">'+termYears+'-yr · '+$('rate').value+'%</div></div>';
+
+  $('breakdown').innerHTML=
+    '<div class="breakdown-row"><span class="lbl">Gross annual rent</span><span class="val good">'+fmt(grossRent)+'</span></div>'+
+    '<div class="breakdown-row"><span class="lbl">Vacancy loss ('+$('vacancy').value+'%)</span><span class="val bad">− '+fmt(vacancyLoss)+'</span></div>'+
+    '<div class="breakdown-row total-row"><span class="lbl">Effective gross income</span><span class="val">'+fmt(egi)+'</span></div>'+
+    '<div class="breakdown-row"><span class="lbl">Property taxes</span><span class="val bad">− '+fmt(propTax)+'</span></div>'+
+    '<div class="breakdown-row"><span class="lbl">Insurance</span><span class="val bad">− '+fmt(insurance)+'</span></div>'+
+    '<div class="breakdown-row"><span class="lbl">Maintenance / OPEX</span><span class="val bad">− '+fmt(opex)+'</span></div>'+
+    (mgmt>0?'<div class="breakdown-row"><span class="lbl">Property management</span><span class="val bad">− '+fmt(mgmt)+'</span></div>':'')+
+    (hoaAnnual>0?'<div class="breakdown-row"><span class="lbl">HOA / other</span><span class="val bad">− '+fmt(hoaAnnual)+'</span></div>':'')+
+    '<div class="breakdown-row total-row"><span class="lbl">Net operating income (NOI)</span><span class="val '+(noi>=0?'good':'bad')+'">'+(noi<0?'− ':'')+fmt(noi)+'</span></div>'+
+    '<div class="breakdown-row"><span class="lbl">Annual debt service</span><span class="val bad">− '+fmt(annualDS)+'</span></div>'+
+    '<div class="breakdown-row total-row"><span class="lbl">Net annual cash flow</span><span class="val '+(annualCF>=0?'good':'bad')+'">'+(annualCF<0?'− ':'')+fmt(annualCF)+'</span></div>';
+
+  $('results').style.display='block';
+  $('aiBox').innerHTML='<span class="spinner"></span> Analyzing your deal…';
+
+  trackUsage();
+
+  var prompt='You are a real estate investment advisor for Joel Gallegos Real Estate. Help a novice investor understand this deal. Be concise, plain-spoken, and honest. Use 3-4 short paragraphs. No bullet points. No markdown.\n\nDeal: Purchase $'+price.toLocaleString()+', down '+(downPct*100).toFixed(1)+'%, rent $'+rent+'/mo, vacancy '+$('vacancy').value+'%, mortgage $'+Math.round(mortgage)+'/mo at '+$('rate').value+'%/'+termYears+'yr, NOI $'+Math.round(noi)+'/yr, cash flow $'+Math.round(monthlyCF)+'/mo, CoC '+coc.toFixed(2)+'%, cap rate '+capRate.toFixed(2)+'%, DSCR '+dscr.toFixed(2)+'x, total cash $'+Math.round(totalCash).toLocaleString()+'.\n\nExplain what these numbers mean, whether this is a good deal, key risks, and 1-2 things to verify before buying. End with one sentence encouraging them to contact Joel Gallegos at 806-891-1744 or Joel@spgllc.ltd.';
+
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+  })
+  .then(function(r){return r.json()})
+  .then(function(data){
+    var text=data.content&&data.content.map(function(b){return b.text||''}).join('')||'Unable to generate insight.';
+    $('aiBox').textContent=text;
+    lastCalc.aiText=text;
+  })
+  .catch(function(){
+    $('aiBox').textContent='AI insight unavailable — review the KPIs above.';
+    lastCalc.aiText='';
+  });
+}
+
+function showReport(){
+  var c=lastCalc;
+  if(!c.price)return;
+  var date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  var addr=c.address||'Investment Property Analysis';
+
+  $('reportBody').innerHTML=
+    '<div class="report-address">'+addr+'</div>'+
+    '<div class="report-date">Prepared by Joel Gallegos · '+date+'</div>'+
+    '<div class="r-section">Key performance indicators</div>'+
+    '<div class="r-kpi-grid">'+
+      '<div class="r-kpi"><div class="r-kpi-lbl">Cash-on-cash return</div><div class="r-kpi-val '+rValClass(c.coc,8,4)+'">'+fmtPct(c.coc)+'</div>'+rBadge(c.coc,8,4)+'</div>'+
+      '<div class="r-kpi"><div class="r-kpi-lbl">Cap rate</div><div class="r-kpi-val '+rValClass(c.capRate,6,4)+'">'+fmtPct(c.capRate)+'</div>'+rBadge(c.capRate,6,4)+'</div>'+
+      '<div class="r-kpi"><div class="r-kpi-lbl">Monthly cash flow</div><div class="r-kpi-val '+(c.monthlyCF>=200?'r-good':c.monthlyCF>=0?'r-warn':'r-bad')+'">'+(c.monthlyCF<0?'−':'')+fmt(c.monthlyCF)+'</div>'+rBadge(c.monthlyCF,200,0)+'</div>'+
+      '<div class="r-kpi"><div class="r-kpi-lbl">DSCR</div><div class="r-kpi-val '+rValClass(c.dscr,1.25,1.0)+'">'+c.dscr.toFixed(2)+'x</div>'+rBadge(c.dscr,1.25,1.0)+'</div>'+
+    '</div>'+
+    '<div class="r-section">Deal summary</div>'+
+    '<div class="r-row"><span class="rl">Purchase price</span><span class="rv">'+fmt(c.price)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Down payment ('+(c.downPct*100).toFixed(1)+'%)</span><span class="rv">'+fmt(c.downAmt)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Loan amount</span><span class="rv">'+fmt(c.price-c.downAmt)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Interest rate / term</span><span class="rv">'+$('rate').value+'% / '+c.termYears+' yr</span></div>'+
+    '<div class="r-row"><span class="rl">Monthly mortgage</span><span class="rv">'+fmt(c.mortgage)+'/mo</span></div>'+
+    '<div class="r-row rt"><span class="rl">Total cash to close</span><span class="rv">'+fmt(c.totalCash)+'</span></div>'+
+    '<div class="r-section">Annual income &amp; expenses</div>'+
+    '<div class="r-row"><span class="rl">Gross annual rent</span><span class="rv r-good">'+fmt(c.grossRent)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Vacancy loss ('+$('vacancy').value+'%)</span><span class="rv r-bad">− '+fmt(c.vacancyLoss)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Property taxes</span><span class="rv r-bad">− '+fmt(c.propTax)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Insurance</span><span class="rv r-bad">− '+fmt(c.insurance)+'</span></div>'+
+    '<div class="r-row"><span class="rl">Maintenance / OPEX</span><span class="rv r-bad">− '+fmt(c.opex)+'</span></div>'+
+    (c.mgmt>0?'<div class="r-row"><span class="rl">Property management</span><span class="rv r-bad">− '+fmt(c.mgmt)+'</span></div>':'')+
+    (c.hoaAnnual>0?'<div class="r-row"><span class="rl">HOA / other</span><span class="rv r-bad">− '+fmt(c.hoaAnnual)+'</span></div>':'')+
+    '<div class="r-row rt"><span class="rl">Net operating income (NOI)</span><span class="rv '+(c.noi>=0?'r-good':'r-bad')+'">'+fmt(c.noi)+'/yr</span></div>'+
+    '<div class="r-row"><span class="rl">Annual debt service</span><span class="rv r-bad">− '+fmt(c.annualDS)+'</span></div>'+
+    '<div class="r-row rt"><span class="rl">Net annual cash flow</span><span class="rv '+(c.annualCF>=0?'r-good':'r-bad')+'">'+(c.annualCF<0?'− ':'')+fmt(c.annualCF)+'</span></div>'+
+    (c.aiText?'<div class="r-section">Investment insight</div><div class="r-ai">'+c.aiText+'</div>':'');
+
+  $('overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeReport(){
+  $('overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+function printReport(){
+  var c=lastCalc;
+  var addr=c.address||'Investment Property Analysis';
+  var date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  var lines=[
+    'JOEL GALLEGOS REAL ESTATE',
+    'Investment Property Analysis Report',
+    '806 891 1744 | Joel@spgllc.ltd',
+    '────────────────────────────────────────────────',
+    addr,
+    'Prepared: '+date,
+    '────────────────────────────────────────────────',
+    'KEY PERFORMANCE INDICATORS',
+    'Cash-on-Cash Return : '+fmtPct(c.coc)+'  ('+(c.coc>=8?'Strong':c.coc>=4?'Average':'Weak')+')',
+    'Cap Rate            : '+fmtPct(c.capRate)+'  ('+(c.capRate>=6?'Strong':c.capRate>=4?'Average':'Weak')+')',
+    'Monthly Cash Flow   : '+(c.monthlyCF<0?'−':'')+fmt(c.monthlyCF)+'  ('+(c.monthlyCF>=200?'Strong':c.monthlyCF>=0?'Average':'Weak')+')',
+    'DSCR                : '+c.dscr.toFixed(2)+'x  ('+(c.dscr>=1.25?'Strong':c.dscr>=1?'Average':'Weak')+')',
+    'NOI                 : '+fmt(c.noi)+'/yr',
+    'Gross Rent Mult.    : '+c.grm.toFixed(1)+'x',
+    '────────────────────────────────────────────────',
+    'DEAL SUMMARY',
+    'Purchase Price      : '+fmt(c.price),
+    'Down Payment        : '+fmt(c.downAmt)+' ('+(c.downPct*100).toFixed(1)+'%)',
+    'Loan Amount         : '+fmt(c.price-c.downAmt),
+    'Rate / Term         : '+$('rate').value+'% / '+c.termYears+' yr',
+    'Monthly Mortgage    : '+fmt(c.mortgage)+'/mo',
+    'Total Cash to Close : '+fmt(c.totalCash),
+    '────────────────────────────────────────────────',
+    'ANNUAL INCOME & EXPENSES',
+    'Gross Annual Rent   : '+fmt(c.grossRent),
+    'Vacancy Loss        : − '+fmt(c.vacancyLoss),
+    'Property Taxes      : − '+fmt(c.propTax),
+    'Insurance           : − '+fmt(c.insurance),
+    'Maintenance/OPEX    : − '+fmt(c.opex)
+  ];
+  if(c.mgmt>0)lines.push('Property Mgmt       : − '+fmt(c.mgmt));
+  if(c.hoaAnnual>0)lines.push('HOA / Other         : − '+fmt(c.hoaAnnual));
+  lines.push('NOI                 : '+fmt(c.noi)+'/yr');
+  lines.push('Annual Debt Service : − '+fmt(c.annualDS));
+  lines.push('Net Annual CF       : '+(c.annualCF<0?'− ':'')+fmt(c.annualCF));
+  lines.push('────────────────────────────────────────────────');
+  if(c.aiText){
+    lines.push('INVESTMENT INSIGHT');
+    lines.push('');
+    lines.push(c.aiText);
+    lines.push('────────────────────────────────────────────────');
+  }
+  lines.push('This report is for informational purposes only.');
+  lines.push('Contact Joel: 806-891-1744 | Joel@spgllc.ltd');
+
+  var txt=lines.join('\n');
+  navigator.clipboard.writeText(txt)
+    .then(function(){alert('Report copied to clipboard!\n\nPaste it into an email, Notes, or Messages to share with your client.')})
+    .catch(function(){alert('Could not copy automatically.\n\nTip: use the Share button below to send directly.')});
+}
+
+function shareNative(){
+  var c=lastCalc;
+  if(!c.price)return;
+  var addr=c.address||'Investment Property';
+  var subject=encodeURIComponent('Joel Gallegos Real Estate – Investment Analysis: '+addr);
+  var bodyLines=[
+    'Hi,',
+    '',
+    'Please find below the investment analysis for '+addr+', prepared by Joel Gallegos Real Estate.',
+    '',
+    'INVESTMENT SUMMARY',
+    'Property:          '+addr,
+    'Purchase Price:    '+fmt(c.price),
+    'Down Payment:      '+fmt(c.downAmt)+' ('+(c.downPct*100).toFixed(1)+'%)',
+    'Loan Amount:       '+fmt(c.price-c.downAmt),
+    'Rate / Term:       '+$('rate').value+'% / '+c.termYears+' years',
+    'Monthly Mortgage:  '+fmt(c.mortgage)+'/mo',
+    'Total Cash to Close: '+fmt(c.totalCash),
+    '',
+    'KEY PERFORMANCE INDICATORS',
+    'Cash-on-Cash Return: '+fmtPct(c.coc),
+    'Cap Rate:            '+fmtPct(c.capRate),
+    'Monthly Cash Flow:   '+(c.monthlyCF<0?'−':'')+fmt(c.monthlyCF)+'/mo',
+    'NOI:                 '+fmt(c.noi)+'/yr',
+    'DSCR:                '+c.dscr.toFixed(2)+'x',
+    '',
+    'Contact Joel: 806-891-1744 | Joel@spgllc.ltd',
+    '',
+    'This report is for informational purposes only.'
+  ];
+  var body=encodeURIComponent(bodyLines.join('\n'));
+  var mailtoLink='mailto:?subject='+subject+'&body='+body;
+
+  if(navigator.share){
+    var plainText='Joel Gallegos Real Estate – '+addr+'\n\nCash-on-Cash: '+fmtPct(c.coc)+' | Cap Rate: '+fmtPct(c.capRate)+'\nMonthly CF: '+fmt(c.monthlyCF)+'/mo | NOI: '+fmt(c.noi)+'/yr\nDSCR: '+c.dscr.toFixed(2)+'x | Total Cash: '+fmt(c.totalCash)+'\n\nJoel Gallegos · 806-891-1744 · Joel@spgllc.ltd';
+    navigator.share({title:'Investment Report – '+addr,text:plainText}).catch(function(){
+      window.location.href=mailtoLink;
+    });
+  } else {
+    window.location.href=mailtoLink;
+  }
+}
+
+var SB_URL='https://oysncxdguubtckzuszgx.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95c25jeGRndXVidGNrenVzemd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NTcwMjcsImV4cCI6MjA5MDAzMzAyN30.w8EGOQkLH54dgdrhB05SDfax3CTUShJ8VwlnBeexg4U';
+
+function trackUsage(){
+  var c=lastCalc;
+  var payload={
+    address:c.address||null,
+    price:c.price,
+    cash_on_cash:+c.coc.toFixed(2),
+    cap_rate:+c.capRate.toFixed(2),
+    monthly_cf:Math.round(c.monthlyCF),
+    noi:Math.round(c.noi),
+    dscr:+c.dscr.toFixed(2)
+  };
+  fetch(SB_URL+'/rest/v1/analyses',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(res){
+    if(res.ok){loadCounter()}
+  })
+  .catch(function(e){console.log('Supabase error',e)});
+}
+
+function loadCounter(){
+  fetch(SB_URL+'/rest/v1/analyses?select=id',{
+    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+  })
+  .then(function(r){return r.json()})
+  .then(function(data){
+    if(Array.isArray(data)){
+      var n=data.length;
+      var el=$('usageCounter');
+      if(el)el.textContent='\uD83D\uDCCA '+n+' '+(n===1?'analysis':'analyses')+' run';
+    }
+  })
+  .catch(function(e){console.log('Supabase counter error',e)});
+}
+
+loadCounter();
+</script>
+
+</body>
+</html>
